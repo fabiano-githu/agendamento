@@ -1,30 +1,27 @@
 package com.chavier.agendamento.model;
 
-import jakarta.persistence.Column; // Importe a anotação Column
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table; // Importe a anotação Table
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*; // Importe tudo de lombok para facilitar
 
 @Entity
-@Table(name = "clientes") // Boa prática: nomear a tabela no plural
+@Table(name = "clientes")
 @Getter
 @Setter
+@NoArgsConstructor // Adicionado
+@AllArgsConstructor // Adicionado
+@EqualsAndHashCode(of = "id") // Adicionado
 public class Cliente {
-
+    // ... (o resto do código continua igual)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100) // Não pode ser nulo, tamanho máximo de 100 caracteres
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 20) // Não pode ser nulo, deve ser único, tamanho máximo de 20
+    @Column(nullable = false, unique = true, length = 20)
     private String telefone;
 
-    @Column(unique = true, length = 100) // Deve ser único (se preenchido), tamanho máximo de 100
+    @Column(unique = true, length = 100)
     private String email;
 }
